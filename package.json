@@ -4,7 +4,10 @@
   "description": "The Code Academy Parcel Service, system that simulates a real world supply chain.",
   "main": "event.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node event.js",
+    "dev": "nodemon",
+    "lint": "eslint '**/*.js'",
+    "test": "jest --coverage --verbose"
   },
   "repository": {
     "type": "git",
@@ -19,5 +22,8 @@
   "homepage": "https://github.com/yasmin-401-advanced-javascript/caps#readme",
   "dependencies": {
     "faker": "^4.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.2.0"
   }
 }
