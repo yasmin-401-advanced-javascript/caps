@@ -7,7 +7,7 @@ const currentDate = date.toLocaleDateString();
 
 events.on('pickup', (payload) => logIt('pickup', payload));
 events.on('in-transit', (payload) => logIt('in-transit', payload));
-events.on('delivered',(payload) => logIt('delivered', payload));
+
 
 
 function logIt(event , payload){
@@ -19,8 +19,9 @@ function logIt(event , payload){
   payload);
 }
 
-const vendor = require('./vendor.js');
-const driver = require('./driver.js');
+require('./vendor.js');
+events.on('delivered',(payload) => logIt('delivered', payload));
+require('./driver.js');
 
 
 

@@ -16,8 +16,8 @@ setInterval(() => {
   // console.log(`where is the towice?`);
 },5000);
 
-setTimeout(() => {
-  events.on('Vendordelivered' , ()=>{
-    console.log(`VENDOR: Thank you for delivering ${obj.orderID}`);
-  });
-},2000);
+// setTimeout(() => {/
+events.on('delivered' , ()=>{
+  console.log(`VENDOR: Thank you for delivering ${obj.orderID}`);
+});
+// },2000);
