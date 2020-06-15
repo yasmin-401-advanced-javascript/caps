@@ -1,33 +1,23 @@
-// const faker = require('faker');
-const date = new Date();
-const currentDate = date.toLocaleDateString();
+'use strict';
 // const driver = require('./driver.js');
-const EE = require('events');
-// const events = new EE();
+const events = require('./event.js');
+const faker = require('faker');
 
+let obj;
 
-function pickupHandler(payload) {
-  console.log(`
-      event:'Pick Up',
-      time: '${currentDate}'
-      payload:{
-          store:'${payload.store}',
-          orderID:'${payload.orderID}', 
-          customer:'${payload.customer}',
-          address:'${payload.address}'}`);
-}
+setInterval(() => {
+  obj = {
+    store: faker.company.companyName(),
+    orderID: faker.random.uuid(),
+    customer: faker.name.findName(),
+    address: `${faker.address.state()},${faker.address.stateAbbr()}`,
+  };
+  events.emit('pickup', obj );
+  // console.log(`where is the towice?`);
+},5000);
 
-function deliveredHandler(payload) {
-  console.log(`
-      event:'delivered',
-      time: '${currentDate}'
-      payload:{
-          store:'${payload.store}',
-          orderID:'${payload.orderID}', 
-          customer:'${payload.customer}',
-          address:'${payload.address}'}`);
-}
-module.exports={
-  pickupHandler :pickupHandler,
-  deliveredHandler :deliveredHandler,
-};
+setTimeout(() => {
+  events.on('Vendordelivered' , ()=>{
+    console.log(`VENDOR: Thank you for delivering ${obj.orderID}`);
+  });
+},2000);

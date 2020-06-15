@@ -1,20 +1,20 @@
 'use strict';
-const date = new Date();
-const currentDate = date.toLocaleDateString();
+const events = require('./event.js');
 
 
-function transit(payload) {
-  console.log(`
-      event:'in-transit',
-      time: '${currentDate}'
-      payload:{
-          store:'${payload.store}',
-          orderID:'${payload.orderID}', 
-          customer:'${payload.customer}',
-          address:'${payload.address}'}`);
+events.on('pickup', (payload) => logIt(payload));
+
+
+function logIt(payload){
+  setTimeout(() => {
+    console.log(`DRIVER: picked up ${payload.orderID}`);
+    events.emit('in-transit', payload);
+    setTimeout(() => {
+      console.log(`DRIVER: delivered up ${payload.orderID}`);
+      events.emit('Vendordelivered', payload);
+      events.emit('delivered', payload);
+    }, 3000);
+  }, 1000);
 }
 
 
-module.exports = {
-  transit: transit,
-};
