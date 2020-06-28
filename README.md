@@ -8,7 +8,7 @@ Before you begin
 
 
 ### Documentation
-- [Submission PR](https://github.com/yasmin-401-advanced-javascript/caps/pull/1)
+- [Submission PR](https://github.com/yasmin-401-advanced-javascript/caps/pull/2)
 
 
 ## Library Used
